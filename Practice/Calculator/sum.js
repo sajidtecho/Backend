@@ -8,8 +8,8 @@ const sumRequestHandler = (req, res) => {
     // Step 1: Listen for data chunks (Stream)
     req.on('data', (chunk) => {
         body.push(chunk);
-    });
-
+    }); 
+ 
     // Step 2: Once the stream ends, process the data
     req.on('end', () => {
         // Concatenate chunks into a single readable string
