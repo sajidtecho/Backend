@@ -1,19 +1,16 @@
-//core module
-const http = require('http');
-
-//external module
 const express = require('express');
 const app = express();
 
-//local module
-// const requestHandler = require('./user'); // Note: user.js is currently starting its own server rather than exporting a request handler.
+app.use(express.urlencoded({ extended: true }));
 
-// use the express 'app' to handle requests
-const server = http.createServer(app);
-
-const PORT = 3002;
-server.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.use((req, res, next) => {
+    console.log("Middleware executed", req.url, req.method);
+    next();
 });
 
+const userRoutes = require('./user');
+app.use(userRoutes);
 
+app.listen(3002, () => {
+    console.log("Server running on");
+});
