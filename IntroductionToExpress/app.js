@@ -6,10 +6,10 @@ const express = require('express');
 const app = express();
 
 //local module
-const testingSyntax = require('./user');
+// const requestHandler = require('./user'); // Note: user.js is currently starting its own server rather than exporting a request handler.
 
-// const { requestHandler } = require('./handler'); // Commented out as handler.js does not exist in this folder
-const server = http.createServer(requestHandler);
+// use the express 'app' to handle requests
+const server = http.createServer(app);
 
 const PORT = 3002;
 server.listen(PORT, () => {
