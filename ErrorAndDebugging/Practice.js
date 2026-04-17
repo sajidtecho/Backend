@@ -1,5 +1,5 @@
 function calculateArea(width, height) {
-    return width + height;
+    return width * height;
 }
 
 let width = 10, height = 5;
