@@ -1,8 +1,10 @@
 const express = require('express');
 
-app.use((req, resizeBy, next) => {
+const app = express();
+
+app.use((req, res, next) => {
     console.log(req.url, req.method);
-    res.send("<h>Welcome to airbnb</h>");
+    res.send(`<h>Welcome to airbnb</h>`);
 });
 
 
