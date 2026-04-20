@@ -8,7 +8,7 @@ app.arguments((req, res, next) => {
 });
 
 app.get("/", (req, res, next) => {
-    console.log(req.url, req.method);
+
     res.send(
         `<h1>Welcome to airbnb</h1> <br>
         <a href="/add-home">Add Home</a>
@@ -16,7 +16,6 @@ app.get("/", (req, res, next) => {
 });
 
 app.get("/add-home", (req, res, next) => {
-    console.log(req.url, req.method);
     res.send(
         `<h1> Add Home </h1>
         <form action="/add-home" method="POST">
