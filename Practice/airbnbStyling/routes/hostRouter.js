@@ -8,16 +8,14 @@ const hostRouter = express.Router();
 const rootDir = require("../utils/pathUtil");
 
 
-hostRouter.get("/add-home", (req, res) => {
-    res.sendFile(path.join(rootDir, 'views', 'addHome.html'));
-});
+hostRouter.get("/add-home");
 
 
 hostRouter.post("/add-home", (req, res) => {
     console.log("Home Registration Successfull for:", req.body, req.body.houseName);
     registredHomes.push({ houseName: req.body.houseName });
     //redirect to home page
-    res.redirect("/");
+    res.redirect("/home");
 });
 
 module.exports = hostRouter;
