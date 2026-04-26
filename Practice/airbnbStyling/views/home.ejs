@@ -67,42 +67,32 @@
         <!-- Featured Section -->
         <div>
             <div class="flex justify-between items-center mb-8">
-                <h2 class="text-3xl font-bold text-gray-800">Inspiration for your next trip</h2>
+                <h2 class="text-3xl font-bold text-gray-800">Your Registered Homes</h2>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Sample Card 1 -->
-                <div class="group cursor-pointer">
-                    <div class="relative aspect-square rounded-2xl overflow-hidden mb-3">
-                        <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute top-3 right-3">
-                            <svg class="h-6 w-6 text-white drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                <% if (homes.length > 0) { %>
+                    <% for (let home of homes) { %>
+                        <div class="group cursor-pointer">
+                            <div class="relative aspect-square rounded-2xl overflow-hidden mb-3 bg-gray-200 flex items-center justify-center">
+                                <!-- Placeholder Image -->
+                                <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                                <div class="absolute top-3 right-3">
+                                    <svg class="h-6 w-6 text-white drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900"><%= home.houseName %></h3>
+                                <p class="text-gray-500 line-clamp-2"><%= home.description || 'No description provided' %></p>
+                                <p class="mt-1 font-semibold">$320 <span class="font-normal">night</span></p>
+                            </div>
                         </div>
+                    <% } %>
+                <% } else { %>
+                    <div class="col-span-full py-12 text-center bg-white rounded-2xl border-2 border-dashed border-gray-200">
+                        <p class="text-gray-500 text-lg">No homes registered yet. Be the first to host!</p>
                     </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="font-bold text-gray-900">Malibu, California</h3>
-                            <p class="text-gray-500">Beachfront Villa</p>
-                            <p class="mt-1 font-semibold">$450 <span class="font-normal">night</span></p>
-                        </div>
-                        <div class="flex items-center">
-                            <svg class="h-4 w-4 text-airbnb mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            <span class="text-sm">4.92</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sample Card 2 -->
-                <div class="group cursor-pointer">
-                    <div class="relative aspect-square rounded-2xl overflow-hidden mb-3">
-                        <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-gray-900">Santorini, Greece</h3>
-                        <p class="text-gray-500">Cliffside Suite</p>
-                        <p class="mt-1 font-semibold">$320 <span class="font-normal">night</span></p>
-                    </div>
-                </div>
+                <% } %>
 
                 <!-- Add Home Call to Action -->
                 <div class="group cursor-pointer text-center flex flex-col items-center justify-center bg-gray-100 rounded-2xl border-2 border-dashed border-gray-300 hover:border-airbnb transition p-6">

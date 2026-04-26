@@ -1,18 +1,12 @@
-//core module
-const path = require('path');
-
-//external module
 const express = require('express');
 const userRouter = express.Router();
 
+// Import the home controller
+// This controller manages the logic for displaying homes
+const homeController = require('../controllers/homes');
 
-//local module
-const rootDir = require("../utils/pathUtil");
-
-
-
-userRouter.get("/", (req, res) => {
-    res.sendFile(path.join(rootDir, 'views', 'home.html'));
-});
+// GET request for the home page (root)
+// We use homeController.getHomes to render the page with dynamic data
+userRouter.get("/", homeController.getHomes);
 
 module.exports = userRouter;
