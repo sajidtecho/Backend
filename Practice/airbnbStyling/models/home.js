@@ -3,7 +3,7 @@ const path = require('path');
 const rootDir = require('../utils/pathUtil');
 
 // Path to the JSON file where homes will be stored
-const p = path.join(rootDir, 'data', 'homes.json');
+const p = path.join(rootDir, 'json', 'homes.json');
 
 // Helper function to read from the file
 const getHomesFromFile = (callback) => {
