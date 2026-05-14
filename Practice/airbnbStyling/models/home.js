@@ -1,25 +1,4 @@
-const fs = require('fs');
-const path = require('path');
-const rootDir = require('../utils/pathUtil');
-
-// Path to the JSON file where homes will be stored
-const p = path.join(rootDir, 'json', 'homes.json');
-
-// Helper function to read from the file
-const getHomesFromFile = (callback) => {
-    fs.readFile(p, (err, fileContent) => {
-        if (err) {
-            // If file doesn't exist, return empty array
-            callback([]);
-        } else {
-            try {
-                callback(JSON.parse(fileContent));
-            } catch (e) {
-                callback([]);
-            }
-        }
-    });
-};
+const db = require('../utils/database');
 
 module.exports = class Home {
     constructor(houseName, description) {
@@ -27,19 +6,16 @@ module.exports = class Home {
         this.description = description;
     }
 
-    // Method to save the current home instance to the JSON file
+    // Method to save the current home instance to the database
     save() {
-        getHomesFromFile(homes => {
-            homes.push(this);
-            // Write updated array back to the JSON file
-            fs.writeFile(p, JSON.stringify(homes, null, 2), (err) => {
-                if (err) console.log("Error saving home:", err);
-            });
-        });
+        return db.execute(
+            'INSERT INTO homes (houseName, description) VALUES (?, ?)',
+            [this.houseName, this.description]
+        );
     }
 
-    // Static method to fetch all homes from the JSON file
-    static fetchAll(callback) {
-        getHomesFromFile(callback);
+    // Static method to fetch all homes from the database
+    static fetchAll() {
+        return db.execute('SELECT * FROM homes');
     }
 };

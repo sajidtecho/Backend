@@ -8,6 +8,17 @@ const express = require('express');
 const userRouter = require("./routes/userRouter");
 const hostRouter = require("./routes/hostRouter");
 const rootDir = require("./utils/pathUtil");
+const db = require("./utils/database");
+
+db.execute('SELECT * fROM homes')
+    .then(result => {
+        console.log('Getting from DB', result);
+
+    })
+    .catch(error => {
+        console.log('Error while reading home records', error);
+
+    })
 
 const app = express();
 
